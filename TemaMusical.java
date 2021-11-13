@@ -7,6 +7,12 @@ public class TemaMusical {
 	private ArrayList<String> generosMusicales;
 	private ArrayList<String> instrumentos; //puede estar vacía
 	
+	
+	
+	public ArrayList<String> getInstrumentos() {
+		return new ArrayList<String>(instrumentos);
+	}
+
 	//Constructor
 	public TemaMusical(String titulo, String idioma, String genero) {
 		super();
@@ -47,5 +53,13 @@ public class TemaMusical {
 		}
 	}
 	
-	
+	public boolean aceptaParticipante(ParticipanteReality p) {
+		if (p.conoceIdioma(this.getIdioma())) {
+			for (String genero:generosMusicales)
+				if (p.prefiereGenero(genero))
+					return true;
+		}
+
+		return false;
+	}
 }

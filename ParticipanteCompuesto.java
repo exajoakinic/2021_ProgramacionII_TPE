@@ -1,4 +1,8 @@
+package trabajoPracticoEspecial;
+
 import java.util.ArrayList;
+import trabajoPracticoEspecial.criteriosParticipante.CriterioParticipante;
+
 
 public class ParticipanteCompuesto extends ParticipanteReality {
 	
@@ -10,19 +14,19 @@ public class ParticipanteCompuesto extends ParticipanteReality {
 	}
 
 	@Override
-	public int getEdad() { // ver posibilidad de contar subgrupo como miembro para el promedio
+	public int getSumaEdadesIndividuales() { // ver posibilidad de contar subgrupo como miembro para el promedio
 		int edad = 0;
 		for(ParticipanteReality p : miembros) {
-			edad+= p.getEdad();
+			edad+= p.getSumaEdadesIndividuales();
 		}
 		return edad;
 	}
 
 	@Override
-	public int getTotalMiembros() {
+	public int getTotalMiembrosIndividuales() {
 		int total = 0;
 		for(ParticipanteReality p : miembros) {
-			total+= p.getTotalMiembros();
+			total+= p.getTotalMiembrosIndividuales();
 		}
 		return total;
 	}
@@ -33,8 +37,7 @@ public class ParticipanteCompuesto extends ParticipanteReality {
 		for(ParticipanteReality p : miembros) {
 			generosCompartidos.retainAll(p.obtenerGeneros());
 		}
-		
-		
+
 		return generosCompartidos;
 	}
 
@@ -67,22 +70,20 @@ public class ParticipanteCompuesto extends ParticipanteReality {
 	}
 
 	@Override
-	public ArrayList<ParticipanteReality> listarParticipantes(Criterio c) {
+	public ArrayList<ParticipanteReality> listarParticipantes(CriterioParticipante c) {
 		ArrayList<ParticipanteReality> resultado = new ArrayList<>();
 		if(c.cumple(this)) {
-			//return this.copiar();
+			resultado.add(this);
 		}else {
 			for(ParticipanteReality p : miembros) {
 				resultado.addAll(p.listarParticipantes(c));
 			}
 		}
-		
 		return resultado;
 	}
 
 	@Override
 	public boolean conoceIdioma(String s) {
-		
 		return this.obtenerIdiomas().contains(s);
 	}
 
@@ -99,42 +100,11 @@ public class ParticipanteCompuesto extends ParticipanteReality {
 	}
 
 	@Override
-	public boolean tocaTema(TemaMusical tema) {
-		if(this.conoceIdioma(tema.getIdioma())) {
-			ArrayList<String> generos = tema.getGenerosMusicales();
-			for(String genero : generos) {
-				if(this.obtenerGeneros().contains(genero)) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-
-	@Override
-	public int sabenTocarInstrumento(String s) {
+	public int cantidadMiembrosTocanInstrumento(String s) {
 		int total = 0;
 		for(ParticipanteReality p : miembros) {
-			total+= p.sabenTocarInstrumento(s);
+			total+= p.cantidadMiembrosTocanInstrumento(s);
 		}
 		return total;
 	}
-
-	@Override
-	public boolean tocaTema(TemaMusical tema, int cantidadParticipantesRequeridos) {
-		if(tocaTema(tema)) {
-			ArrayList<String> instrumentos = tema.getInstrumentos();
-			for(String instrumento : instrumentos) {
-				if(sabenTocarInstrumento(instrumento) == cantidadParticipantesRequeridos) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-
-	
-	
-	
-
 }

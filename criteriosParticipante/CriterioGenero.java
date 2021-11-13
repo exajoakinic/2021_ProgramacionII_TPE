@@ -1,6 +1,6 @@
 package trabajoPracticoEspecial.criteriosParticipante;
 
-import trabajoPracticoEspecial.Participante;
+import trabajoPracticoEspecial.ParticipanteReality;
 
 public class CriterioGenero implements CriterioParticipante {
 	private String genero;
@@ -11,7 +11,7 @@ public class CriterioGenero implements CriterioParticipante {
 	}
 
 	@Override
-	public boolean cumple(Participante participante) {
+	public boolean cumple(ParticipanteReality participante) {
 		return participante.prefiereGenero(genero);
 	}
 

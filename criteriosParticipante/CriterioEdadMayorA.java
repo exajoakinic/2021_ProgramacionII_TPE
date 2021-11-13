@@ -1,6 +1,6 @@
 package trabajoPracticoEspecial.criteriosParticipante;
 
-import trabajoPracticoEspecial.Participante;
+import trabajoPracticoEspecial.ParticipanteReality;
 
 public class CriterioEdadMayorA implements CriterioParticipante {
 	private int edad;
@@ -11,7 +11,7 @@ public class CriterioEdadMayorA implements CriterioParticipante {
 	}
 
 	@Override
-	public boolean cumple(Participante participante) {
+	public boolean cumple(ParticipanteReality participante) {
 		return (participante.getEdad() > edad);
 	}
 

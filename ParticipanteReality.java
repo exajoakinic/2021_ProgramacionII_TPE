@@ -1,4 +1,7 @@
+package trabajoPracticoEspecial;
+
 import java.util.ArrayList;
+import trabajoPracticoEspecial.criteriosParticipante.CriterioParticipante;
 
 public abstract class ParticipanteReality {
 
@@ -13,18 +16,18 @@ public abstract class ParticipanteReality {
 		return nombre;
 	}
 	
-	public int calcularEdad() {
+	public int getEdad() {
 		
-		int miembrosTotales = getTotalMiembros();
-		int edad = getEdad();
+		int miembrosTotales = getTotalMiembrosIndividuales();
+		int edad = getSumaEdadesIndividuales();
 		
 		return edad/miembrosTotales;
 		
 	}
 	
-	public abstract int getEdad();
+	public abstract int getSumaEdadesIndividuales();
 
-	public abstract int getTotalMiembros();
+	public abstract int getTotalMiembrosIndividuales();
 	
 	public abstract boolean conoceIdioma(String s);
 	
@@ -32,20 +35,15 @@ public abstract class ParticipanteReality {
 	
 	public abstract boolean tocaInstrumento(String s);
 	
-	public abstract int sabenTocarInstrumento(String s);
-	
 	public abstract ArrayList<String> obtenerGeneros();
 	
 	public abstract ArrayList<String> obtenerIdiomas();
 	
 	public abstract ArrayList<String> obtenerInstrumentos();
 	
-	public abstract ArrayList<ParticipanteReality> listarParticipantes(Criterio c);
+	public abstract ArrayList<ParticipanteReality> listarParticipantes(CriterioParticipante c);
 
-	public abstract boolean tocaTema(TemaMusical tema);
-
-	public abstract boolean tocaTema(TemaMusical tema, int cantidadParticipantesRequeridos);
-
+	public abstract int cantidadMiembrosTocanInstrumento(String instrumento);
 	
 
 	

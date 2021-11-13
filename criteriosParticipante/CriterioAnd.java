@@ -1,6 +1,6 @@
 package trabajoPracticoEspecial.criteriosParticipante;
 
-import trabajoPracticoEspecial.Participante;
+import trabajoPracticoEspecial.ParticipanteReality;
 
 public class CriterioAnd implements CriterioParticipante {
 	private CriterioParticipante c1, c2;
@@ -11,7 +11,7 @@ public class CriterioAnd implements CriterioParticipante {
 	}
 
 	@Override
-	public boolean cumple(Participante participante) {
+	public boolean cumple(ParticipanteReality participante) {
 		return (c1.cumple(participante) && c2.cumple(participante));
 	}
 

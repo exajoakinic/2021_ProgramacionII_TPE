@@ -1,10 +1,12 @@
+package trabajoPracticoEspecial.criteriosParticipante;
 
-public class CriterioInstrumento extends Criterio {
+import trabajoPracticoEspecial.ParticipanteReality;
+
+public class CriterioInstrumento implements CriterioParticipante {
 	
 	private String instrumento;
 	
 	
-
 	public CriterioInstrumento(String instrumento) {
 		super();
 		this.instrumento = instrumento;

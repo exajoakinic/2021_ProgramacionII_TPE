@@ -1,6 +1,6 @@
 package trabajoPracticoEspecial.criteriosParticipante;
 
-import trabajoPracticoEspecial.Participante;
+import trabajoPracticoEspecial.ParticipanteReality;
 
 public class CriterioNot implements CriterioParticipante {
 	private CriterioParticipante c1;
@@ -10,7 +10,7 @@ public class CriterioNot implements CriterioParticipante {
 	}
 
 	@Override
-	public boolean cumple(Participante participante) {
+	public boolean cumple(ParticipanteReality participante) {
 		return (!c1.cumple(participante));
 	}
 

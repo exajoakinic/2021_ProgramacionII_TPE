@@ -1,4 +1,8 @@
+package trabajoPracticoEspecial;
+
 import java.util.ArrayList;
+import trabajoPracticoEspecial.criteriosParticipante.CriterioParticipante;
+
 
 public class ParticipanteIndividual extends ParticipanteReality {
 
@@ -68,7 +72,7 @@ public class ParticipanteIndividual extends ParticipanteReality {
 		return new ArrayList<String>(generosMusicales);
 	}
 
-	public int getEdad() {
+	public int getSumaEdadesIndividuales() {
 		return edad;
 	}
 
@@ -85,13 +89,13 @@ public class ParticipanteIndividual extends ParticipanteReality {
 
 
 	@Override
-	public int getTotalMiembros() {
+	public int getTotalMiembrosIndividuales() {
 		return 1;
 	}
 
 
 	@Override
-	public ArrayList<ParticipanteReality> listarParticipantes(Criterio c) {
+	public ArrayList<ParticipanteReality> listarParticipantes(CriterioParticipante c) {
 		ArrayList<ParticipanteReality> resultado = new ArrayList<>();
 		if(c.cumple(this)) {
 			resultado.add(this);
@@ -99,39 +103,8 @@ public class ParticipanteIndividual extends ParticipanteReality {
 		return resultado;
 	}
 
-
 	@Override
-	public boolean tocaTema(TemaMusical tema) {
-		if(this.conoceIdioma(tema.getIdioma())) {
-			ArrayList<String> generos = tema.getGenerosMusicales();
-			for(String genero : generos) {
-				if(generosMusicales.contains(genero)) {
-					return true;
-				}
-			}
-		}
-		
-		return false;
-	}
-
-
-	@Override
-	public boolean tocaTema(TemaMusical tema, int cantidadParticipantesRequeridos) {
-		if(tocaTema(tema)) {
-			ArrayList<String> instrumentos = tema.getInstrumentos();
-			for(String instrumento : instrumentos) {
-				if(sabenTocarInstrumento(instrumento) == cantidadParticipantesRequeridos) {
-					return true;
-				}
-			}
-					
-		}
-		return false;
-	}
-
-
-	@Override
-	public int sabenTocarInstrumento(String s) {
+	public int cantidadMiembrosTocanInstrumento(String s) {
 		if(tocaInstrumento(s)) {
 			return 1;
 		}
